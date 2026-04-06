@@ -31,7 +31,8 @@
 
 #derechaBtn,
 #izquierdaBtn {
-    display: none;
+    display: flex; /* Ahora visibles */
+    cursor: pointer;
 }
 
 #arribaBtn,

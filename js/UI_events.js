@@ -187,6 +187,9 @@ function initEventos() {
         });
     }
 
+    // === Inicializar Mochila (si el módulo está cargado) ===
+    if (typeof inicializarMochilaUI === 'function') inicializarMochilaUI();
+
     // === Botón de Mochila ===
     const mochilaBtn = document.getElementById("mochilaBtn");
     if (mochilaBtn) {

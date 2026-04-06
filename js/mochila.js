@@ -21,8 +21,8 @@ function actualizarMochila() {
 
     // Actualizar items de mochila (1-3)
     for (let i = 1; i <= 3; i++) {
-        const item = document.getElementById(`item-mochila${i}`);
-        if (item) item.textContent = itemMochila[i];
+        const item = document.getElementById(`itemMochila${i}`);
+        if (item) item.textContent = itemMochila[i] || "- VACÍO -";
     }
 }
 
@@ -101,9 +101,31 @@ function cambiarItemMochila(txt) {
     }
 }
 
+/**
+ * Inicializa los listeners para la edición de la mochila.
+ */
+function inicializarMochilaUI() {
+    // === Edición de Items de Mochila ===
+    [1, 2, 3].forEach(i => {
+        const item = document.getElementById(`itemMochila${i}`);
+        if (item) {
+            item.addEventListener('click', () => {
+                const nuevoItem = prompt("Ingresa el nombre del objeto para este slot:", item.textContent === "- VACÍO -" ? "" : item.textContent);
+                if (nuevoItem !== null) {
+                    window.idxitemMochila = i; // Establecer índice para mochila.js
+                    if (typeof cambiarItemMochila === 'function') {
+                        cambiarItemMochila(nuevoItem || "- VACÍO -");
+                    }
+                }
+            });
+        }
+    });
+}
+
 // Vinculación de eventos de click/touchstart para monedas en inicialización (o delegación)
 // Se delega a main.js para evitar cargar en tiempo inesperado o moverlo aquí.
 window.actualizarMochila = actualizarMochila;
 window.sumarMonedas = sumarMonedas;
 window.restarMonedas = restarMonedas;
 window.cambiarItemMochila = cambiarItemMochila;
+window.inicializarMochilaUI = inicializarMochilaUI;
