@@ -1,0 +1,279 @@
+.btns-mas-menos {
+    grid-row: 8/span 3;
+    grid-column: 5/span 1;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 250;
+    outline: 0;
+}
+
+/* * Estilos de consola  comienzo*/
+.item-grilla.consola-container {
+    display: grid;
+    grid-template-rows: 1fr 2.5fr 1fr;
+    grid-template-columns: 1fr 6fr 1fr;
+    align-items: center;
+    justify-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.consola-item.texto {
+    margin: 0;
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#derechaBtn,
+#izquierdaBtn {
+    display: none;
+}
+
+#arribaBtn,
+#abajoBtn {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#arribaBtn svg,
+#abajoBtn svg {
+    height: max-content;
+    width: 25px;
+}
+
+#arribaBtn svg {
+    transform: translateY(-5px);
+}
+#abajoBtn svg {
+    transform: translateY(5px);
+}
+
+#derechaBtn {
+    grid-column: 3;
+    grid-row: 1/ span 3;
+}
+
+#izquierdaBtn {
+    grid-column: 1;
+    grid-row: 1/ span 3;
+}
+
+/* * Estilos de consola  fin*/
+
+/* * Estilos experienciaBtn comienzo*/
+/* #experienciaBtn {
+    border: solid #fff;
+    border-width: calc(45.781px - 41.203px) calc(50.828px - 45.734px) calc(45.781px - 41.203px) calc(50.828px - 45.734px);
+    background: #000;
+    color: #fff;
+} */
+
+/* * Estilos experienciaBtn fin*/
+#experienciaBtn {
+    position: relative;
+}
+
+span.experiencia-item {
+    display: none;
+    position: absolute;
+    bottom: calc(-50%);
+    height: 50%;
+    width: 100%;
+    outline: solid 1.5px #000000;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: Titillium Web;
+}
+
+
+/* * Estilos de input */
+.contenedor-input {
+    font-family: Titillium Web;
+    display: flex;
+    position: absolute;
+    background-color: #fff;
+    top: 40%;
+    height: 80px;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    outline: solid 1.5px #000000;
+    z-index: 1000;
+}
+
+.contenedor-input .exp-input,
+.contenedor-input .comandos-input {
+    outline: solid 1.5px #000000;
+    border: none;
+}
+
+.contenedor-input .input-button {
+    margin-top: 5px;
+    width: 80px;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+}
+
+.item-modalMochila {
+    font-family: Titillium Web;
+}
+
+/* Modal selección de habilidades */
+.modal-habilidades {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  
+}
+.modal-habilidades.activo {
+  display: flex;
+}
+
+.modal-habilidades-contenido {
+  width: 50vw;
+  max-width: 380px;
+  height: 70vh;
+  max-height: 560px;
+
+  background: #ffffff;
+  border: 8px solid #ffffff;
+  outline: 8px solid #000000;
+
+  padding: 10px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+}
+
+.modal-habilidades-titulo {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 6px;
+ 
+}
+.modal-habilidades-lista {
+  flex: 1;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.modal-habilidades-lista::-webkit-scrollbar {
+  display: none;
+}
+.item-habilidad {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 12px;
+  color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 0px;
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.item-habilidad:hover {
+  background-color: #000000;
+}
+
+
+.titulo-reino {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #000000;
+  margin: 10px 0 4px 0;
+  border-bottom: 1px solid #000000;
+}
+
+
+
+
+
+
+.item-habilidad {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 1px solid #000000;
+}
+
+
+
+/* --- MODAL HABILIDADES --- */
+.modal-habilidades {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  border: 1px solid #000000;
+}
+.modal-habilidades.activo { display: flex; }
+
+.modal-habilidades-contenido {
+  width: 50vw;
+  max-width: 380px;
+  height: 70vh;
+  max-height: 560px;
+
+  background: #ffffff;
+  border: 8px solid #ffffff;
+  outline: 8px solid #000000;
+
+  padding: 10px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.modal-habilidades-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px;
+}
+.modal-habilidades-titulo { font-size: 1.2rem; font-weight: bold; color: black; }
+.modal-habilidades-cerrar { background: transparent; border: none; cursor: pointer; }
+.modal-habilidades-cerrar img { width: 32px; height: 32px; }
+.modal-habilidades-lista { flex: 1; overflow-y: auto; padding-right: 6px; }
+.modal-habilidades-lista::-webkit-scrollbar { width: 0; }
+.item-habilidad {
+  padding: 6px 4px; margin-bottom: 4px;
+  border-bottom: 1px solid black;
+  font-size: 0.9rem; cursor: pointer; color: black;
+}
+.item-habilidad:hover { background: #000000; color: #fff; }
+
+.visor-habilidad{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:80%;max-width:300px;z-index:2000;display:none;}
+.visor-habilidad.visible{display:block;}
+.visor-habilidad-contenido{background:#fff;border:3px solid #000;border-radius:0px;padding:10px;box-shadow:0 4px 0 #000;font-family: Titillium Web;}
+.visor-habilidad-header{text-align:center;margin-bottom:6px;}
+.visor-titulo{font-weight:bold;font-size:16px;font-family: Titillium Web;}
+.visor-habilidad-cuerpo{border-top:2px solid #000;padding-top:6px;}
+.oculto{display:none;}

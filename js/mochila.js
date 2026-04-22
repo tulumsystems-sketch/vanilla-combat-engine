@@ -10,7 +10,7 @@
 function actualizarMochila() {
     if (typeof capital === 'undefined' || typeof itemMochila === 'undefined') return;
 
-    // Actualizar monedas en el DOM
+    // Actualizar monedas en la UI principal (legacy, ahora oculta)
     const oroTxt = document.getElementById("oroTxt");
     const plataTxt = document.getElementById("plataTxt");
     const bronceTxt = document.getElementById("bronceTxt");
@@ -19,10 +19,19 @@ function actualizarMochila() {
     if (plataTxt) plataTxt.textContent = capital.plata;
     if (bronceTxt) bronceTxt.textContent = capital.bronce;
 
+    // Actualizar monedas en el modal de mochila
+    const oroMochilaTxt = document.getElementById("oroMochilaTxt");
+    const plataMochilaTxt = document.getElementById("plataMochilaTxt");
+    const bronceMochilaTxt = document.getElementById("bronceMochilaTxt");
+
+    if (oroMochilaTxt) oroMochilaTxt.textContent = capital.oro;
+    if (plataMochilaTxt) plataMochilaTxt.textContent = capital.plata;
+    if (bronceMochilaTxt) bronceMochilaTxt.textContent = capital.bronce;
+
     // Actualizar items de mochila (1-3)
     for (let i = 1; i <= 3; i++) {
         const item = document.getElementById(`itemMochila${i}`);
-        if (item) item.textContent = itemMochila[i] || "- VACÍO -";
+        if (item) item.textContent = itemMochila[i] || "";
     }
 }
 
@@ -110,11 +119,11 @@ function inicializarMochilaUI() {
         const item = document.getElementById(`itemMochila${i}`);
         if (item) {
             item.addEventListener('click', () => {
-                const nuevoItem = prompt("Ingresa el nombre del objeto para este slot:", item.textContent === "- VACÍO -" ? "" : item.textContent);
+                const nuevoItem = prompt("Ingresa el nombre del objeto para este slot:", item.textContent === "" ? "" : item.textContent);
                 if (nuevoItem !== null) {
-                    window.idxitemMochila = i; // Establecer índice para mochila.js
+                    window.idxitemMochila = i; 
                     if (typeof cambiarItemMochila === 'function') {
-                        cambiarItemMochila(nuevoItem || "- VACÍO -");
+                        cambiarItemMochila(nuevoItem || "");
                     }
                 }
             });

@@ -106,6 +106,7 @@ window.cambiarArma = function(nombre) {
         if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
     }
     if(typeof cerrarModal === 'function') cerrarModal('armas');
+    if(typeof cerrarEdicion === 'function') cerrarEdicion();
 }
 window.cambiarArmaEsbirro = window.cambiarArma;
 
@@ -113,7 +114,9 @@ window.cambiarEquipamiento = function(nombre) {
     if(typeof indexVisualizado === 'undefined' || typeof equipamientoSeleccionado === 'undefined') return;
     const ent = entidades[indexVisualizado];
     if(ent && typeof equiposDict !== 'undefined') {
+        // Asignar nuevo equipo (el renderizado se encarga de sumar los stats)
         ent["equipo" + equipamientoSeleccionado] = equiposDict[nombre] || equiposDict['nada'];
+        
         if (typeof GameState !== 'undefined') GameState.guardar();
         if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
     }
@@ -133,3 +136,29 @@ window.cambiarHabilidad = function(nombre) {
     if(typeof cerrarModalHabilidades === 'function') cerrarModalHabilidades();
 }
 window.editarHabilidadEsbirro = window.cambiarHabilidad;
+
+/**
+ * Gestiona el cambio de imagen de portada para la entidad actual.
+ */
+window.cambioImagen = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const ent = entidades[indexVisualizado];
+        if (ent) {
+            ent.portada = e.target.result;
+            if (typeof imprimirPersonaje === "function") imprimirPersonaje();
+            if (typeof GameState !== "undefined") GameState.guardar();
+            if (typeof cerrarModal === "function") cerrarModal('avatar');
+        }
+    };
+    reader.readAsDataURL(file);
+};
+
+// Alias legacy: en el código viejo mostrarEsbirroSeleccionado() refrescaba la UI del esbirro.
+// En el nuevo código, imprimirPersonaje() ya renderiza la entidad seleccionada (hero o esbirro).
+window.mostrarEsbirroSeleccionado = function() {
+    if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
+};

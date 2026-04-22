@@ -65,44 +65,49 @@
   <div class="contenedor">
 
     <div class="grilla">
-      <div class="item-grilla" id="portadaBtn"><img id="portadaImg" src="img/logo-meeple-combat.png"></div>
-      <div class="item-grilla" id="experienciaBtn">
-        <img src="img/experiencia.png">
-        <span id="experienciaTxt" class="experiencia-item">00</span>
+      <div class="item-grilla" id="portadaBtn">
+        <div class="cuadrado-negro" style="cursor: pointer;">
+          <img id="portadaImg" src="img/logo-meeple-combat.png" onclick="if(typeof clickPortada === 'function') clickPortada()">
+        </div>
       </div>
-      <div class="item-grilla" id="mochilaBtn"><img src="img/mochila.png"></div>
+      <div class="item-grilla" id="experienciaBtn">
+        <div class="cuadrado-negro"><img src="img/experiencia.png"></div>
+        <span class="experiencia-item" id="experienciaTxt">0</span>
+      </div>
+      <div class="item-grilla" id="mochilaBtn"><div class="cuadrado-negro"><img src="img/mochila.png"></div></div>
       <div class="item-grilla" id="nombreBtn"><span class="texto" id="nombreTxt">NOMBRE</span></div>
-      <div class="item-grilla" id="esbirrosBtn"><img id="esbirrosImg" src="img/esbirrosico.png"></div>
-      <div class="item-grilla" id="editarBtn"><img id="editarImg" src="img/editar.png"></div>
+      <div class="item-grilla" id="esbirrosBtn"><div class="cuadrado-negro"><img id="esbirrosImg" src="img/esbirrosico.png"></div></div>
+      <div class="item-grilla" id="editarBtn"><div class="cuadrado-negro"><img id="editarImg" src="img/editar.png"></div></div>
 
 
       <div class="item-grilla btns-mas-menos" id="btnMasMenos" style="display: none;">
-        <div class="" id="arribaBtn">
+        <div class="cuadrado-negro" id="arribaBtn">
           <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M10.21 8.91731H1.79001C1.4576 8.91779 1.13184 8.82412 0.850455 8.64715C0.569067 8.47017 0.34355 8.21713 0.200008 7.91731C0.0319755 7.56157 -0.0327436 7.16577 0.0132253 6.77504C0.0591941 6.3843 0.214002 6.01434 0.460008 5.70731L4.67001 0.607307C4.83522 0.416678 5.03949 0.263792 5.26896 0.15901C5.49843 0.0542284 5.74775 0 6.00001 0C6.25227 0 6.50158 0.0542284 6.73106 0.15901C6.96053 0.263792 7.16479 0.416678 7.33001 0.607307L11.54 5.70731C11.786 6.01434 11.9408 6.3843 11.9868 6.77504C12.0328 7.16577 11.968 7.56157 11.8 7.91731C11.6565 8.21713 11.4309 8.47017 11.1496 8.64715C10.8682 8.82412 10.5424 8.91779 10.21 8.91731Z"
-              fill="black" />
+              fill="white" />
           </svg>
         </div>
-        <div class="" id="abajoBtn">
+        <div class="cuadrado-negro" id="abajoBtn">
           <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1.79115 -7.05719e-05L10.2112 -7.05719e-05C10.5436 -0.000552177 10.8693 0.0931149 11.1507 0.270088C11.4321 0.447062 11.6576 0.700105 11.8012 0.999929C11.9692 1.35567 12.0339 1.75146 11.9879 2.1422C11.942 2.53293 11.7872 2.9029 11.5412 3.20993L7.33115 8.30993C7.16594 8.50056 6.96167 8.65344 6.7322 8.75823C6.50273 8.86301 6.25341 8.91724 6.00115 8.91724C5.74889 8.91724 5.49958 8.86301 5.2701 8.75823C5.04063 8.65344 4.83637 8.50056 4.67115 8.30993L0.46115 3.20993C0.215144 2.9029 0.0603361 2.53293 0.0143671 2.1422C-0.0316019 1.75146 0.0331192 1.35567 0.201152 0.999929C0.344693 0.700105 0.57021 0.447062 0.851598 0.270088C1.13299 0.0931149 1.45874 -0.000552177 1.79115 -7.05719e-05Z"
-              fill="black" />
+              fill="white" />
           </svg>
         </div>
       </div>
 
       <!-- * Consola -->
-      <div class="item-grilla consola-container" id="">
-        <div class="consola-item" id="izquierdaBtn">
-          <img src="img/anterior.png">
+      <div class="item-grilla consola-container">
+        <div id="izquierdaBtn" style="cursor: pointer; display: none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="black"><path d="M14 7l-5 5 5 5V7z"/></svg>
         </div>
-
         <span class="consola-item texto" id="consolaBtn">CONSOLA</span>
-
-        <div class="consola-item" id="derechaBtn">
-          <img src="img/siguiente.png">
+        <span class="consola-item texto" id="textoNavEsbirro" style="display: none; cursor: pointer;" onclick="if(typeof abrirModal === 'function') abrirModal('esbirros')">
+          Selecciona editar y luego el ícono de esta criatura para invocar otra.
+        </span>
+        <div id="derechaBtn" style="cursor: pointer; display: none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="black"><path d="M10 17l5-5-5-5v10z"/></svg>
         </div>
       </div>
       <div class="item-grilla"><span class="textoBlanco">ATRIBUTOS</span></div>
@@ -113,7 +118,7 @@
 
         <div class="boton" id="ataqueBtn">
           <div class="itemBoton">
-            <img id="ataqueImg" src="img/ataque.png">
+            <div class="cuadrado-negro"><img id="ataqueImg" src="img/ataque.png"></div>
           </div>
           <div class="itemBoton">
             <span class="texto" id="ataqueTxt">0</span>
@@ -121,134 +126,82 @@
         </div>
 
         <div class="boton" id="esquivaBtn">
-
           <div class="itemBoton">
-
-            <img id="esquivaImg" src="img/esquiva.png">
-
+            <div class="cuadrado-negro"><img id="esquivaImg" src="img/esquiva.png"></div>
           </div>
-
           <div class="itemBoton">
-
             <span class="texto" id="esquivaTxt">0</span>
-
           </div>
-
         </div>
 
 
         <div class="boton" id="bloqueoBtn">
-
           <div class="itemBoton">
-
-            <img id="bloqueoImg" src="img/bloqueo.png">
-
+            <div class="cuadrado-negro"><img id="bloqueoImg" src="img/bloqueo.png"></div>
           </div>
-
           <div class="itemBoton">
-
             <span class="texto" id="bloqueoTxt">0</span>
-
           </div>
-
         </div>
 
 
         <div class="boton" id="velocidadBtn">
-
           <div class="itemBoton">
-
-            <img id="velocidadImg" src="img/velocidad.png">
-
+            <div class="cuadrado-negro"><img id="velocidadImg" src="img/velocidad.png"></div>
           </div>
-
           <div class="itemBoton">
-
             <span class="texto" id="velocidadTxt">0</span>
-
           </div>
-
         </div>
 
 
         <div class="boton" id="vidaBtn">
-
           <div class="itemBoton">
-
-            <img id="vidaImg" src="img/vida.png">
-
+            <div class="cuadrado-negro"><img id="vidaImg" src="img/vida.png"></div>
           </div>
-
           <div class="itemBoton">
             <span class="texto" id="vidaTxt">70</span>
           </div>
-
         </div>
 
 
         <div class="boton" id="poderBtn">
-
           <div class="itemBoton">
-
-            <img id="poderImg" src="img/poder.png">
-
+            <div class="cuadrado-negro"><img id="poderImg" src="img/poder.png"></div>
           </div>
-
           <div class="itemBoton">
             <span class="texto" id="poderTxt">0</span>
           </div>
-
         </div>
 
 
         <div class="boton" id="equipo1Btn">
-
           <div class="itemBoton">
-
-            <img id="equipo1Img" src="img/nada.png">
-
+            <div class="cuadrado-negro"><img id="equipo1Img" src="img/nada.png"></div>
           </div>
-
           <div class="itemBoton">
-
             <span class="texto" id="equipo1Txt">0</span>
-
           </div>
-
         </div>
 
 
         <div class="boton" id="equipo2Btn">
-
           <div class="itemBoton">
-
-            <img id="equipo2Img" src="img/nada.png">
-
+            <div class="cuadrado-negro"><img id="equipo2Img" src="img/nada.png"></div>
           </div>
-
           <div class="itemBoton">
-
             <span class="texto" id="equipo2Txt">0</span>
-
           </div>
-
         </div>
 
 
         <div class="boton" id="equipo3Btn">
-
           <div class="itemBoton">
-
-            <img id="equipo3Img" src="img/nada.png">
-
+            <div class="cuadrado-negro"><img id="equipo3Img" src="img/nada.png"></div>
           </div>
-
           <div class="itemBoton">
-
             <span class="texto" id="equipo3Txt">0</span>
-
           </div>
-
         </div>
 
 
@@ -259,18 +212,18 @@
 
         <div class="botoneraCentral">
 
-          <div class="itemBotoneraCentral" id="arma1ImgBtn"><img id="arma1Img" src="img/nada.png"></div>
+          <div class="itemBotoneraCentral" id="arma1ImgBtn"><div class="cuadrado-negro"><img id="arma1Img" src="img/nada.png"></div></div>
 
           <div class="itemBotoneraCentral" id="arma1TxtBtn"><span class="texto" id="arma1Txt">Arma 1</span>
           </div>
 
-          <div class="itemBotoneraCentral" id="accionBtn"><span id="accionTxt" class="texto">ACCION</span>
+          <div class="itemBotoneraCentral" id="accionBtn"><span id="accionTxt" class="texto">ATACAR</span>
           </div>
 
           <div class="itemBotoneraCentral" id="arma2TxtBtn"><span class="texto" id="arma2Txt">Arma 2</span>
           </div>
 
-          <div class="itemBotoneraCentral" id="arma2ImgBtn"><img id="arma2Img" src="img/nada.png"></div>
+          <div class="itemBotoneraCentral" id="arma2ImgBtn"><div class="cuadrado-negro"><img id="arma2Img" src="img/nada.png"></div></div>
 
         </div>
 
@@ -281,55 +234,9 @@
       <div class="item-grilla" id="habilidad1Btn"><span id="habilidad1Txt" class="texto">HABILIDAD</span></div>
       <div class="item-grilla" id="habilidad2Btn"><span id="habilidad2Txt" class="texto">HABILIDAD</span></div>
       <div class="item-grilla" id="habilidad3Btn"><span id="habilidad3Txt" class="texto">HABILIDAD</span></div>
-      <div class="item-modalMochila" id="item-mochila1"></div>
-      <div class="item-modalMochila" id="item-mochila2"></div>
-      <div class="item-modalMochila" id="item-mochila3"></div>
-
-      <div class="item-modalMochila">
-
-        <div class="botonVertical" id="oroBtn">
-
-          <div class="itemBoton"><img src="img/oro.png"></div>
-
-          <div class="itemBoton">
-            <div class="texto" id="oroTxt">0</div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="item-modalMochila">
-
-        <div class="botonVertical" id="plataBtn">
-
-          <div class="itemBoton"><img src="img/plata.png"></div>
-
-          <div class="itemBoton">
-            <div class="texto" id="plataTxt">0</div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="item-modalMochila">
-
-        <div class="botonVertical" id="bronceBtn">
-
-          <div class="itemBoton"><img src="img/bronce.png"></div>
-
-          <div class="itemBoton">
-            <div class="texto" id="bronceTxt">0</div>
-          </div>
-
-        </div>
-
-      </div>
+      <!-- Las monedas se muestran solo dentro del modal de mochila -->
 
       <input type="file" name="imagen" id="cambioImagenBtn" accept="image/*" style="display: none;" onchange="cambioImagen(event)">
-
 
 
     </div>
@@ -345,19 +252,7 @@
 
 
 
-  <!-- Modal de Habilidades -->
-<div id="modalHabilidades" class="modal-habilidades">
-  <div class="modal-habilidades-contenido">
-    <div class="modal-habilidades-header">
-      <span class="modal-habilidades-titulo">HABILIDADES</span>
-      <button id="cerrarModalHabilidades" class="modal-habilidades-cerrar">
-        <img src="img/cerrar.png" alt="Cerrar">
-      </button>
-    </div>
-    <div id="listaHabilidades" class="modal-habilidades-lista"></div>
-  </div>
-</div>
-  </div>
+  <!-- Modal de Habilidades (generado dinámicamente en UI_dynamic.js) -->
 
 <script src="js/datos.esbirros.js"></script>
 <script src="js/datos.habilidades.js"></script>
@@ -377,4 +272,5 @@
 <script src="js/UI.js"></script>
 <script src="js/main.js"></script>
 
+</body>
 </html>

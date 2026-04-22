@@ -1,25 +1,50 @@
 .btns-mas-menos {
     grid-row: 8/span 3;
-    grid-column: 5/span 1;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 250;
-    outline: 0;
+    grid-column: 1/span 9;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 8fr 1fr;
+    z-index: 251;
+    outline: none;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.item-modal, .item-modalMochila {
+    border: 1px solid #000000 !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.item-modal .cuadrado-negro, .item-modalMochila .cuadrado-negro {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+}
+
+.item-modal .cuadrado-negro img, .item-modalMochila .cuadrado-negro img {
+    width: 85% !important;
+    height: 85% !important;
+    object-fit: contain !important;
 }
 
 /* * Estilos de consola  comienzo*/
 .item-grilla.consola-container {
     display: grid;
-    grid-template-rows: 1fr 2.5fr 1fr;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 8fr 1fr;
     align-items: center;
     justify-items: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .consola-item.texto {
-    margin: 0;
+    margin: 0 !important;
+    padding: 0;
     grid-row: 2;
     grid-column: 2;
     display: flex;
@@ -27,6 +52,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    line-height: normal;
 }
 
 #derechaBtn,
@@ -35,26 +61,42 @@
     cursor: pointer;
 }
 
+#arribaBtn {
+    grid-row: 1;
+    grid-column: 2;
+}
+#abajoBtn {
+    grid-row: 3;
+    grid-column: 2;
+}
+
 #arribaBtn,
 #abajoBtn {
-    height: 100%;
-    width: 100%;
+    pointer-events: auto;
+    height: 100% !important;
+    width: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent !important;
 }
 
 #arribaBtn svg,
 #abajoBtn svg {
-    height: max-content;
-    width: 25px;
+    height: 12px;
+    width: 12px;
+}
+
+#arribaBtn svg path,
+#abajoBtn svg path {
+    fill: #000;
 }
 
 #arribaBtn svg {
-    transform: translateY(-5px);
+    transform: translateY(2px);
 }
 #abajoBtn svg {
-    transform: translateY(5px);
+    transform: translateY(-2px);
 }
 
 #derechaBtn {
@@ -68,6 +110,78 @@
 }
 
 /* * Estilos de consola  fin*/
+
+/* Centrado perfecto de iconos de cabecera */
+#experienciaBtn, #mochilaBtn, #esbirrosBtn, #editarBtn, #nombreBtn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+}
+
+#experienciaBtn .cuadrado-negro, 
+#mochilaBtn .cuadrado-negro, 
+#esbirrosBtn .cuadrado-negro, 
+#editarBtn .cuadrado-negro {
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important; /* Llenar todo el espacio sin redondeo */
+}
+
+#experienciaBtn .cuadrado-negro img, 
+#mochilaBtn .cuadrado-negro img, 
+#esbirrosBtn .cuadrado-negro img, 
+#editarBtn .cuadrado-negro img {
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: contain !important;
+}
+
+#nombreTxt {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+}
+
+/* Centrado perfecto para Atributos y Equipo (y Armas Centrales) */
+.boton .itemBoton, .botonVertical .itemBoton, .itemBotoneraCentral {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+}
+
+.boton .cuadrado-negro, .botonVertical .cuadrado-negro, .itemBotoneraCentral .cuadrado-negro {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+.boton .cuadrado-negro img, .botonVertical .cuadrado-negro img, .itemBotoneraCentral .cuadrado-negro img {
+    margin: 0 !important;
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: contain !important;
+}
+
+.boton .texto, .botonVertical .texto, .itemBotoneraCentral .texto {
+    margin: 0 !important; /* Eliminar el margin-top del 3% */
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    line-height: 1 !important;
+}
+
+#accionTxt {
+    font-size: 0.9rem !important; /* Un poco más grande para el botón principal */
+}
 
 /* * Estilos experienciaBtn comienzo*/
 /* #experienciaBtn {
@@ -278,3 +392,11 @@ span.experiencia-item {
 .visor-titulo{font-weight:bold;font-size:16px;font-family: Titillium Web;}
 .visor-habilidad-cuerpo{border-top:2px solid #000;padding-top:6px;}
 .oculto{display:none;}
+
+.modal-habilidades-contenido { background: #000 !important; border: 8px solid #000 !important; outline: 8px solid #ffffff !important; }
+.modal-habilidades-titulo, .item-habilidad, .titulo-reino { color: #ffffff !important; border-color: #ffffff !important; }
+
+
+.modal-habilidades-contenido { background: #000 !important; border: 8px solid #000 !important; outline: 8px solid #ffffff !important; }
+.modal-habilidades-titulo { color: #ffffff !important; }
+

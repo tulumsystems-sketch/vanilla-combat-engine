@@ -9,10 +9,10 @@ class Entidad {
     constructor(data = {}) {
         // Inicialización con valores por defecto para evitar errores de renderizado
         this.actualizarPropiedades({
-            nombre: "NUEVO MEEPLE",
+            nombre: "BIENVENIDO",
             portada: "img/logo-meeple-combat.png",
             icono: "",
-            descripcion: "Sin descripción.",
+            descripcion: "Descripcion personaje default",
             ataque: 0,
             esquiva: 0,
             bloqueo: 0,
@@ -88,7 +88,7 @@ class Entidad {
  */
 const GameState = {
     // Array de 6 posiciones: [0] Heroe, [1..5] Esbirros
-    entidades: Array.from({ length: 6 }, (_, i) => new Entidad({ nombre: i === 0 ? "HÉROE" : "ESBIRRO" })),
+    entidades: Array.from({ length: 6 }, (_, i) => new Entidad(i === 0 ? {} : { nombre: "ESBIRRO" })),
     
     // Indica qué entidad está seleccionada actualmente en la UI (0-5)
     seleccionIndex: 0,

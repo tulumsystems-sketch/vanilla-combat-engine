@@ -27,6 +27,25 @@ img {
 
 }
 
+.cuadrado-negro {
+    width: 90%;
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    background-color: #000 !important;
+    margin: auto;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cuadrado-negro img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
 
 .texto {
     font-size: 0.75rem; /* Un poco más pequeño para que quepa más texto */
@@ -455,3 +474,13 @@ img {
         background-color: rgb(0, 0, 0);
     }
 }
+.modal, .modalMochila { background-color: #000 !important; }
+.item-modal, .item-modalMochila { outline: solid 1px #ffffff !important; border: 1px solid #ffffff !important; }
+.modal .texto, .modalMochila .texto { color: #ffffff !important; }
+.item-modal .texto, .item-modalMochila .texto { color: #ffffff !important; }
+
+
+.modal, .modalMochila { border: 2px solid #ffffff !important; outline: 3px solid #000000 !important; background-color: #000000 !important; }
+.modal .texto, .modalMochila .texto { color: #ffffff !important; }
+.item-modal, .item-modalMochila { border: 1px solid #ffffff !important; outline: none !important; }
+

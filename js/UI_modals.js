@@ -11,6 +11,8 @@ function abrirModal(id) {
     const modalId = `modal${id.charAt(0).toUpperCase() + id.slice(1)}`;
     const modal = document.getElementById(modalId);
     if (modal) {
+        if (id === 'avatar' && typeof renderizarModalAvatar === 'function') renderizarModalAvatar();
+        if (id === 'armas' && typeof renderizarModalArmas === 'function') renderizarModalArmas();
         modal.classList.add("activo");
         modal.style.display = "grid"; 
     }

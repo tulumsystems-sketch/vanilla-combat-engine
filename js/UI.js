@@ -16,6 +16,11 @@ function generar(el, id, tlo, txtId, btnId) {
     
 }
 
+function ocultarInputExperiencia() {
+    const el = document.getElementById("contenedorInputExperiencia");
+    if (el) el.style.display = "none";
+}
+
 var tipoIngreso = "comando"
 
   function mostrarInputComandos() {
