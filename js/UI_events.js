@@ -54,24 +54,24 @@ function initEventos() {
     if (izquierdaBtn) {
         izquierdaBtn.addEventListener('click', () => {
             if (typeof ocultarBtnArribaAbajo === 'function') ocultarBtnArribaAbajo();
-            if (typeof indexVisualizado !== 'undefined' && typeof entidades !== 'undefined') {
-                window.indexVisualizado--;
-                if (window.indexVisualizado < 1) window.indexVisualizado = 5;
-                if (typeof GameState !== 'undefined') GameState.seleccionIndex = window.indexVisualizado;
-                if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
-            }
+            // Solo navegar si estamos en modo esbirro (indexVisualizado > 0)
+            if (window.indexVisualizado === 0) return;
+            window.indexVisualizado--;
+            if (window.indexVisualizado < 1) window.indexVisualizado = 5;
+            GameState.seleccionIndex = window.indexVisualizado;
+            if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
         });
     }
 
     if (derechaBtn) {
         derechaBtn.addEventListener('click', () => {
             if (typeof ocultarBtnArribaAbajo === 'function') ocultarBtnArribaAbajo();
-            if (typeof indexVisualizado !== 'undefined' && typeof entidades !== 'undefined') {
-                window.indexVisualizado++;
-                if (window.indexVisualizado > 5) window.indexVisualizado = 1;
-                if (typeof GameState !== 'undefined') GameState.seleccionIndex = window.indexVisualizado;
-                if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
-            }
+            // Solo navegar si estamos en modo esbirro (indexVisualizado > 0)
+            if (window.indexVisualizado === 0) return;
+            window.indexVisualizado++;
+            if (window.indexVisualizado > 5) window.indexVisualizado = 1;
+            GameState.seleccionIndex = window.indexVisualizado;
+            if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
         });
     }
 
@@ -275,21 +275,24 @@ function initEventos() {
 
     // === Botón de Selección (Ojo / Persona) - Alternar Modo PJ/Esbirro ===
     const esbirrosBtn = document.getElementById("esbirrosBtn");
-    const esbirrosImg = document.getElementById("esbirrosImg");
+    // El img puede estar dentro de un .cuadrado-negro, buscamos con querySelector
+    const esbirrosImg = esbirrosBtn ? esbirrosBtn.querySelector("img") : null;
     
-    if (esbirrosBtn && esbirrosImg) {
+    if (esbirrosBtn) {
         esbirrosBtn.addEventListener('click', () => {
-            if (typeof indexVisualizado === 'undefined') return;
             if (typeof ocultarBtnArribaAbajo === 'function') ocultarBtnArribaAbajo();
 
             if (window.indexVisualizado === 0) {
-                window.indexVisualizado = 1;
-                if (typeof GameState !== 'undefined') GameState.seleccionIndex = 1;
-                esbirrosImg.src = "img/personajeico.png";
+                // Pasar a modo esbirro: ir al último esbirro visitado (mínimo slot 1)
+                const ultimoEsbirro = (GameState.seleccionIndex > 0) ? GameState.seleccionIndex : 1;
+                window.indexVisualizado = ultimoEsbirro;
+                GameState.seleccionIndex = ultimoEsbirro;
+                if (esbirrosImg) esbirrosImg.src = "img/personajeico.png";
             } else {
+                // Volver al héroe
                 window.indexVisualizado = 0;
-                if (typeof GameState !== 'undefined') GameState.seleccionIndex = 0;
-                esbirrosImg.src = "img/esbirrosico.png";
+                GameState.seleccionIndex = 0;
+                if (esbirrosImg) esbirrosImg.src = "img/esbirrosico.png";
             }
 
             if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
@@ -465,13 +468,16 @@ function initEventos() {
     }
 
     // === Función para manejar clics en la portada (Avatar) ===
+    // Solo funciona en modo edición. En modo juego no hace nada.
     window.clickPortada = function() {
+        if (!edicion) return;
         if (typeof ocultarBtnArribaAbajo === 'function') ocultarBtnArribaAbajo();
-        if (typeof indexVisualizado === 'undefined') return;
         
         if (window.indexVisualizado === 0) {
+            // Héroe: abrir selector de avatares/personajes
             if (typeof abrirModal === 'function') abrirModal('avatar');
         } else {
+            // Esbirro: abrir selector de esbirros para el slot actual
             if (typeof abrirModal === 'function') abrirModal('esbirros');
         }
     };

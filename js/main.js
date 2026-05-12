@@ -63,6 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Restaurar el ícono del botón esbirros según el estado guardado
+    const esbirrosBtnImg = document.querySelector("#esbirrosBtn img");
+    if (esbirrosBtnImg) {
+        esbirrosBtnImg.src = (indexVisualizado === 0) ? "img/esbirrosico.png" : "img/personajeico.png";
+    }
+
     if (typeof imprimirPersonaje === "function") imprimirPersonaje();
     
     // Conectar el input de importación de partida
@@ -88,13 +94,24 @@ window.avatar = function(nombre) {
 
 window.cambiarEsbirro = function(nombre) {
     const key = nombre.toLowerCase().trim();
-    const pj = (typeof esbirrosDict !== 'undefined') ? esbirrosDict[key] : null;
-    if (pj && entidades && typeof indexVisualizado !== 'undefined' && entidades[indexVisualizado]) {
-        entidades[indexVisualizado].actualizarPropiedades(pj);
+    // En legacy, un esbirro podía tomar datos tanto de `esbirrosDict` como de `personajesDict`.
+    // Esto se usa para "invocaciones" / mascotas especiales y para mantener el flujo idéntico a `interfaz/`.
+    const data =
+        (typeof personajesDict !== 'undefined' && personajesDict[key]) ? personajesDict[key] :
+        ((typeof esbirrosDict !== 'undefined' && esbirrosDict[key]) ? esbirrosDict[key] : null);
+    
+    // Usar siempre el index actual sincronizado (puede ser 1-5)
+    const slotDestino = (window.indexVisualizado > 0) ? window.indexVisualizado : 1;
+    
+    if (data && entidades && entidades[slotDestino]) {
+        entidades[slotDestino].actualizarPropiedades(data);
         if (typeof GameState !== 'undefined') GameState.guardar();
-        if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
+        // Legacy: al cambiar esbirro refresca UI y sale de edición
+        if (typeof mostrarEsbirroSeleccionado === 'function') mostrarEsbirroSeleccionado();
+        else if (typeof imprimirPersonaje === 'function') imprimirPersonaje();
     }
-    if(typeof cerrarModal === 'function') cerrarModal('esbirros');
+    if (typeof cerrarModal === 'function') cerrarModal('esbirros');
+    if (typeof cerrarEdicion === 'function') cerrarEdicion();
 };
 
 window.cambiarArma = function(nombre) {

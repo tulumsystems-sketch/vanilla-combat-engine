@@ -64,6 +64,7 @@ class Entidad {
         } else {
             this[`arma${ranura}`] = { nombre, icono: "img/nada.png", danno: 0, descripcion: "Sin datos" };
         }
+
     }
 
     configurarEquipamiento(ranura, nombre) {

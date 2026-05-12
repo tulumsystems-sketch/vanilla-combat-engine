@@ -13,6 +13,13 @@ function abrirModal(id) {
     if (modal) {
         if (id === 'avatar' && typeof renderizarModalAvatar === 'function') renderizarModalAvatar();
         if (id === 'armas' && typeof renderizarModalArmas === 'function') renderizarModalArmas();
+        if (id === 'esbirros') {
+            // Mostrar en el título qué slot de esbirro se está asignando
+            const tituloEl = modal.querySelector('.texto');
+            const slotActual = (typeof window.indexVisualizado !== 'undefined' && window.indexVisualizado > 0)
+                ? window.indexVisualizado : 1;
+            if (tituloEl) tituloEl.textContent = `ESBIRRO SLOT ${slotActual}`;
+        }
         modal.classList.add("activo");
         modal.style.display = "grid"; 
     }
